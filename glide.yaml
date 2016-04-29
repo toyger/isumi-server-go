@@ -1,0 +1,4 @@
+package: github.com/toyger/isumi-server
+import:
+  - package: github.com/goji/goji
+  - package: github.com/kelseyhightower/envconfig
