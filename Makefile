@@ -2,6 +2,9 @@ TARGETS=$(shell GO15VENDOREXPERIMENT=1 go list ./... | awk '$$0 !~ /$(IGNORE)/{p
 ARCH=$(shell uname | tr '[:upper:]' '[:lower:]')
 VERSION=$(shell git rev-parse --verify HEAD)
 
+install-go:
+	sh install-go.sh 1.6.2
+
 deps:
 	GO15VENDOREXPERIMENT=1 glide install
 

@@ -1,0 +1,38 @@
+general:
+  build_dir: ../.go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+
+machine:
+  environment:
+    GOROOT_BOOTSTRAP: /usr/local/go
+    GOPATH: "${HOME}/.go_workspace"
+    PATH: "/usr/local/go/bin:${PATH}"
+  services:
+    - docker
+  post:
+    - rm -rf ".go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
+    - mkdir -p ".go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME"
+    - mv $CIRCLE_PROJECT_REPONAME ".go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME/"
+    - mkdir -p $CIRCLE_PROJECT_REPONAME
+
+dependencies:
+  cache_directories:
+    - "~/.glide"
+
+  pre:
+    - make install-go
+
+  override:
+    - make build
+    - docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest .
+
+test:
+  override:
+    - make test
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker tag $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
