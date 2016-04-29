@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-glibc:latest
 
-COPY ./bin /usr/local/bin
+ADD ./bin/isumi /usr/local/bin/isumi
 
-ENTRYPOINT ./isumi
+ENTRYPOINT /usr/local/bin/isumi
 
 EXPOSE 8080
