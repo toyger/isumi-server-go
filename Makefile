@@ -5,7 +5,10 @@ VERSION=$(shell git rev-parse --verify HEAD)
 install-go:
 	sh install-go.sh 1.6.2
 
-deps:
+install-glide:
+	sh install-glide.sh 0.8.3
+
+deps: install-glide
 	GO15VENDOREXPERIMENT=1 glide install
 
 deps-update:
