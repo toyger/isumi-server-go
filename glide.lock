@@ -1,0 +1,18 @@
+hash: b54bfe259cbf83ab02895ba1a96724802e6a4e454f67aba8b8d953656f80aeb6
+updated: 2016-04-29T17:17:58.090611548+09:00
+imports:
+- name: github.com/goji/goji
+  version: 0a0714568ced6c2f0138934b12029bcc2c52b993
+- name: github.com/kelseyhightower/envconfig
+  version: cea086319492c3940683ea5e122aa5de70a33923
+- name: goji.io
+  version: 0a0714568ced6c2f0138934b12029bcc2c52b993
+- name: golang.org/x/crypto
+  version: 285fb2ed20d1dc450fc743a1b3ff7c36bef372b9
+  repo: https://golang.org/x/crypto
+- name: golang.org/x/net
+  version: 1aafd77e1e7f6849ad16a7bdeb65e3589a10b2bb
+- name: golang.org/x/text
+  version: 3100578f0f8093e37883ba48c9187fe51367ad05
+  repo: https://golang.org/x/text
+devImports: []
